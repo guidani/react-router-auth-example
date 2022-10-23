@@ -10,20 +10,16 @@ const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const addUser = async () => {
-    setUser({
-      id: "abc",
-      email: "gui@gui.com",
-      name: "Gui",
-    });
+    const sampleUser = { id: "abc", email: "gui@gui.com", name: "Gui" };
+    localStorage.setItem("u", JSON.stringify(sampleUser));
+    setUser(JSON.parse(localStorage.getItem("u")));
   };
 
   const removeUser = () => {
+    localStorage.removeItem("u");
     setUser(null);
   };
 
-  useEffect(() => {
-    console.log("User is>>>", user);
-  }, [user]);
 
   return (
     <userContext.Provider value={{ user, addUser, removeUser }}>
