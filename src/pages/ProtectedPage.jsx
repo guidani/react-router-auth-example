@@ -2,11 +2,11 @@ import React from "react";
 import useAuth from "../hooks/useAuth";
 
 const ProtectedPage = () => {
-  const { user } = useAuth();
+  const auth = useAuth();
   return (
     <>
       <div>ProtectedPage</div>
-      {user ? (
+      {auth?.user ? (
         <>
           <p>Logado</p>
         </>
@@ -15,6 +15,17 @@ const ProtectedPage = () => {
           <p>Não logado</p>
         </>
       )}
+          <>
+      {auth?.user ? (
+        <>
+          <button onClick={auth?.doLogout}>SAIR</button>
+        </>
+      ) : (
+        <>
+          <button onClick={auth?.doLogin}>SAIR</button>
+        </>
+      )}
+    </>
     </>
   );
 };

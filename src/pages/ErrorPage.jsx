@@ -1,9 +1,24 @@
-import React from 'react'
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const ErrorPage = () => {
-  return (
-    <div>ErrorPage</div>
-  )
-}
+  // const navigate = useNavigate();
+  const location = useLocation();
 
-export default ErrorPage
+  const from = location.state?.from?.pathname || "/";
+
+  // function goBack() {
+  //   navigate(from, { replace: true });
+  // }
+
+  return (
+    <>
+      <div>ErrorPage</div>
+      <Link to={from}>
+        <button>VOLTAR</button>
+      </Link>
+    </>
+  );
+};
+
+export default ErrorPage;

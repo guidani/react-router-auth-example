@@ -2,10 +2,10 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-const RequireAuth = ({ children }) => {
-  const { user } = useAuth();
+const RequireAuth = () => {
+  const auth = useAuth();
 
-  if (!user) {
+  if (!auth?.user) {
     return <Navigate to="/" />;
   }
   return <Outlet />;

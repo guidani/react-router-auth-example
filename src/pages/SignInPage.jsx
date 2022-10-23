@@ -3,28 +3,26 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const SignInPage = () => {
-  const { user, addUser, removeUser } = useAuth();
+  const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  async function doLogin() {
-    addUser();
-    navigate("/home");
+  const from = location.state?.from?.pathname || "/";
+
+  function goBack() {
+    navigate(from, { replace: true });
+  }
+
+  function doLogin() {
+    auth?.doLogin();
+    navigate("/home", { replace: true });
   }
 
   return (
     <>
-      {!user ? (
-        <>
-          <p>No momento você não está logado!!!</p>
-        </>
-      ) : (
-        <>
-          <p>Você já se encontra logado!!!</p>
-        </>
-      )}
       <div>Logar no site</div>
       <button onClick={doLogin}>Logar</button>
+      <button onClick={goBack}>VOLTAR</button>
     </>
   );
 };
