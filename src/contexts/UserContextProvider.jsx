@@ -1,20 +1,32 @@
 import { createContext, useEffect, useState } from "react";
 
-export const userContext = createContext(Boolean);
+export const userContext = createContext({
+  user: {},
+  addUser: Function,
+  removeUser: Function,
+});
 
 const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const turnUserMode = async () => {
-    await setUser((user) => !user);
+  const addUser = async () => {
+    setUser({
+      id: "abc",
+      email: "gui@gui.com",
+      name: "Gui",
+    });
+  };
+
+  const removeUser = () => {
+    setUser(null);
   };
 
   useEffect(() => {
-    console.log("USer is>>>", user);
+    console.log("User is>>>", user);
   }, [user]);
 
   return (
-    <userContext.Provider value={{ user, turnUserMode }}>
+    <userContext.Provider value={{ user, addUser, removeUser }}>
       {children}
     </userContext.Provider>
   );

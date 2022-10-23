@@ -1,13 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const SignInPage = () => {
-  const { user, turnUserMode } = useAuth();
+  const { user, addUser, removeUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   async function doLogin() {
-    await turnUserMode();
+    addUser();
     navigate("/home");
   }
 

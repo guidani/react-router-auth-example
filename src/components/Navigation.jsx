@@ -7,7 +7,7 @@ const Navigation = () => {
   return (
     <>
       <nav>
-        {/* <Link to="/">Landing</Link> */}
+        
         <Link to="/home">Home Page</Link>
         {user && <Link to="/protected">Protected Page</Link>}
       </nav>
